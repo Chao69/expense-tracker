@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Netflix",
+    "date": "2021/7/2",
+    "category": "休閒娛樂",
+    "amount": "330"
+  },
+  {
+    "name": "貓税",
+    "date": "2021/7/2",
+    "category": "居家物業",
+    "amount": "3000"
+  },
+  {
+    "name": "油錢",
+    "date": "2021/7/20",
+    "category": "交通出行",
+    "amount": "1320"
+  },
+  {
+    "name": "晚餐",
+    "date": "2021/7/10",
+    "category": "餐飲食品",
+    "amount": "120"
+  },
+  {
+    "name": "早餐",
+    "date": "2021/7/15",
+    "category": "餐飲食品",
+    "amount": "70"
+  },
+  {
+    "name": "燃料稅ˊAˋ",
+    "date": "2021/6/1",
+    "category": "其他",
+    "amount": "6980"
+  },
+  {
+    "name": "牌照稅ˊAˋ",
+    "date": "2021/6/1",
+    "category": "其他",
+    "amount": "10300"
+  }
+]
