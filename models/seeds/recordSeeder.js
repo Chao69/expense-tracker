@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Expense = require('../record')
+const record = require('../record')
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -10,6 +10,6 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-  
+
   console.log('mongodb connected!')
 })
