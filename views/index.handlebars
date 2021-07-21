@@ -12,21 +12,24 @@
 </div>
 
 {{!-- total amount --}}
-<div class="d-flex justify-content-center" style="margin-top: 100px;">
-  <h4 style="margin-right: 10px;">Total:</h4>
+<div class="d-flex justify-content-center" style="margin: 30px 0 15px 0">
+  <div class="d-flex justify-content-center rounded" style="background-color: #C4E1FF;max-width: 100%;">
+    <h4 style="margin: 20px 10px;">Total:</h4>
+    <h1 style="margin: 20px">20000</h1>
+  </div>
 </div>
 
-
 <ul class="list-group" style="margin-top: 75px;max-width: 30%; margin: auto;">
-  <li class="list-group-item" style="background-color: cadetblue;">
+  {{#each records}}
+  <li class="list-group-item m-1 rounded" style="background-color: cadetblue;">
     <div class="col d-flex justify-content-evenly align-items-center">
-      <i class="fas fa-utensils fa-2x p-2"></i>
+      <i class="fas fa-utensils fa-2x p-2" style="color: 	#AD5A5A;"></i>
       <div class="col">
-        <h4 style="display: inline;">早餐</h4>
-        <p style="margin-bottom: 0">2021/07/03</p>
+        <h4 style="display: inline;">{{ this.name }}</h4>
+        <p style="margin-bottom: 0">{{ this.date }}</p>
       </div>
       <div class="col d-flex justify-content-center">
-        <h5 style="margin-bottom: 0;">70</h5>
+        <h5 style="margin-bottom: 0;">{{ this.amount }}</h5>
       </div>
       <div class="col d-flex justify-content-end">
         <button type="button" class="btn btn-success">Detail</button>
@@ -35,4 +38,5 @@
       </div>
     </div>
   </li>
+  {{/each}}
 </ul>
