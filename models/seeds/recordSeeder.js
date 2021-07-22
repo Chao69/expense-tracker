@@ -18,11 +18,11 @@ db.once('open', () => {
       date: data.date,
       category: data.category,
       amount: data.amount
-    })
-  }).then(() => {
-    console.log('record seeder create successful!')
-    return db.close()
-  }).then(() => {
-    console.log('database connection close ...')
+    }).then(() => {
+      console.log('record seeder create successful!')
+      return db.close()
+    }).then(() => {
+      console.log('database connection close ...')
+    }).catch(err => console.error(error))
   })
 })

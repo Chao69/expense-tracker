@@ -16,12 +16,12 @@ db.once('open', () => {
     Category.create({
       name: data.name,
       icon: data.icon
-    })
-  }).then(() => {
+    }).then(() => {
       console.log('category seeder create successful!')
       return db.close()
-  }).then(() => {
+    }).then(() => {
       console.log('database connection close ...')
+    }).catch(err => console.error(error))
   })
 })
 
