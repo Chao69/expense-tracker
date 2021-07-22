@@ -11,17 +11,11 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-  console.log('mongodb connected!')
-  categoryData.forEach(data => {
-    Category.create({
-      name: data.name,
-      icon: data.icon
-    }).then(() => {
-      console.log('category seeder create successful!')
+  Category.create(categoryData)
+    .then(() => {
+      console.log('category seeder created!')
       return db.close()
-    }).then(() => {
-      console.log('database connection close ...')
-    }).catch(err => console.error(error))
-  })
+    })
+    .catch(error => console.log.error(error))
 })
 
