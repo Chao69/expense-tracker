@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Record = require('../record')
-const recordData = require('./recordSample.json')
+const Category = require('../category')
+const categoryData = require('./categorySample.json')
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -12,17 +12,16 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  recordData.forEach(data => {
-    Record.create({
+  categoryData.forEach(data => {
+    Category.create({
       name: data.name,
-      date: data.date,
-      category: data.category,
-      amount: data.amount
+      icon: data.icon
     })
   }).then(() => {
-    console.log('record seeder create successful!')
-    return db.close()
+      console.log('category seeder create successful!')
+      return db.close()
   }).then(() => {
-    console.log('database connection close ...')
+      console.log('database connection close ...')
   })
 })
+
