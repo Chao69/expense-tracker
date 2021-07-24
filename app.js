@@ -27,10 +27,16 @@ app.get('/', (req, res) => {
     .lean()
     .then((records) => {
       let totalAmount = 0
-      records.forEach(record => totalAmount += record.amount)
+      records.forEach(record => {
+        totalAmount += record.amount
+      })
       res.render('index', { records, totalAmount })
     })
     .catch(error => console.error(error))
+})
+
+app.get('/expense/new', (req, res) => {
+  res.render('new')
 })
 
 app.listen(3000, () => {

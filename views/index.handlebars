@@ -19,11 +19,12 @@
   </div>
 </div>
 
+{{!-- expense list --}}
 <ul class="list-group" style="margin-top: 75px;max-width: 30%; margin: auto;">
   {{#each records}}
   <li class="list-group-item m-1 rounded" style="background-color: cadetblue;">
     <div class="col d-flex justify-content-evenly align-items-center">
-      <i class="fas fa-utensils fa-2x p-2" style="color: 	#AD5A5A;"></i>
+      <i class="fas fa-dollar-sign fa-2x p-2" style="color: 	#AD5A5A;"></i>
       <div class="col">
         <h4 style="display: inline;">{{ this.name }}</h4>
         <p style="margin-bottom: 0">{{ this.date }}</p>
@@ -40,3 +41,8 @@
   </li>
   {{/each}}
 </ul>
+
+{{!-- add new expense button --}}
+<div class="col d-flex justify-content-center mt-3">
+  <a class="btn btn-success px-5" href="/expense/new">新增支出</a>
+</div>
