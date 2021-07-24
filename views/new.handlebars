@@ -1,4 +1,4 @@
-<form action="/expense" method="POST">
+<form action="/new" method="POST">
   <div class="contain mx-auto" style="width: 900px;margin-top: 150px;">
     <div class="row mb-3">
       <div class="col">
@@ -18,7 +18,7 @@
       </div>
       <div class="col">
         <input type="text" class="form-control" aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default" placeholder="name ..." name="name">
+          aria-describedby="inputGroup-sizing-default" placeholder="name ..." name="name" required>
       </div>
     </div>
     <div class="row mb-3">
@@ -30,7 +30,7 @@
       <div class="col">
         <div class="col">
           <input type="date" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default" name="date">
+            aria-describedby="inputGroup-sizing-default" name="date" required>
         </div>
       </div>
     </div>
@@ -42,19 +42,11 @@
       </div>
       <div class="col">
         <div class="input-group">
-          <input type="text" class="form-control" aria-label="Text input with dropdown button"
-            placeholder="category ..." name="category">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Dropdown</button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
+          <select class="form-control ml-2" id="record-category" name="category" required>
+            {{#each categoryList }}
+            <option value="{{ this.name }}">{{ this.name }}</option>
+            {{/each}}
+          </select>
         </div>
       </div>
     </div>
@@ -67,12 +59,13 @@
       <div class="col">
         <div class="col">
           <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default" placeholder="amount ..." name="amount">
+            aria-describedby="inputGroup-sizing-default" placeholder="amount ..." name="amount" required>
         </div>
       </div>
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <a class="btn btn-success px-5" href="/">新增支出</a>
+    <button class="btn btn-success active mx-2 px-4" type="submit" aria-pressed="true">新增支出</button>
+    <a href="/" class="btn btn-secondary  active mx-2 px-4" role="button" aria-pressed="true">回到首頁</a>
   </div>
 </form>
