@@ -38,6 +38,7 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// add new expense
 app.get('/new', (req, res) => {
   Category.find()
     .lean()
@@ -53,6 +54,18 @@ app.post('/new', (req, res) => {
   console.log(res.body)
   Record.create({ name, date, category, amount })
     .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
+// define btn-detail function 
+app.get('/records/:id', (req, res) => {
+  const id = req.params._id
+  Record.findById(id)
+    .lean()
+    .then((record) => {
+      console.log(record)
+      res.render('detail', { record })
+    })
     .catch(error => console.error(error))
 })
 
