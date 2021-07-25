@@ -1,8 +1,24 @@
-<div class="container">
+<div class="container" style="margin-top:200px;">
   <div class="row">
-    <div class="col">
-      <p>123123123123</p>
+    <div class="row mb-3">
+      <div class="col d-flex justify-content-center">消費名稱：</div>
+      <div class="col d-flex justify-content-star">{{ record.name }}</div>
     </div>
-    <div class="col">{{ record.name }}</div>
+    <div class="row mb-3">
+      <div class="col d-flex justify-content-center">消費日期：</div>
+      <div class="col d-flex justify-content-star">{{ record.date }}</div>
+    </div>
+    <div class="row mb-3">
+      <div class="col d-flex justify-content-center">消費類別：</div>
+      <div class="col d-flex justify-content-star">{{ record.category }}</div>
+    </div>
+    <div class="row mb-3">
+      <div class="col d-flex justify-content-center">消費金額：</div>
+      <div class="col d-flex justify-content-star">{{ record.amount }}</div>
+    </div>
+  </div>
+  <div class="col d-flex justify-content-center mt-5">
+    <a href="/" class="btn btn-secondary px-3">返回首頁</a>
+    <a href="/" class="btn btn-success px-3">編輯支出</a>
   </div>
 </div>
