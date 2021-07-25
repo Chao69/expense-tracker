@@ -2,9 +2,8 @@
 <div class="d-flex justify-content-center" style="margin-top: 100px;">
   <form action="/filter" method="GET">
     <select name="category" onchange="submit()" style="width: 300px;">
-      <option value="所有支出">所有支出</option>
       {{#each categories}}
-      <option value="{{ this.name }}" {{#is categoryName }} selected {{/is}}>{{ this.name }}</option>
+      <option value="{{ this.name }}">{{ this.name }}</option>
       {{/each}}
     </select>
   </form>

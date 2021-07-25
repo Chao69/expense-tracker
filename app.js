@@ -43,7 +43,6 @@ app.get('/', async (req, res) => {
     .catch(error => console.error(error))
 })
 
-
 // filter by category
 app.get('/filter', async (req, res) => {
   const categoryName = req.query.category
@@ -51,18 +50,17 @@ app.get('/filter', async (req, res) => {
   const categoryData = {}
   categories.forEach(category => categoryData[category.name] = category.icon)
 
-  console.log(categoryName)
-
   return Record.find({ category: categoryName })
     .sort({ date: 'asc' })
     .lean()
     .then(records => {
       let totalAmount = 0
-      totalAmount += records.amount
-      records.icon = categoryData[records.category]
-      console.log(records)
+      records.map(record => {
+        totalAmount += record.amount
+        record.icon = categoryData[record.category]
+      })
+      res.render('index', { records, totalAmount, categories, categoryName })
     })
-  res.render('index', { records, totalAmount, categories, categoryName })
     .catch(error => console.error(error))
 })
 
