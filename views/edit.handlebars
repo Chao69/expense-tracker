@@ -1,0 +1,20 @@
+<form action="/records/{{ record._id }}/edit" method="POST">
+  <div class="row" style="margin-top: 200px;">
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <input type="text" placeholder="name" name="name" value="{{ record.name }}">
+    </div>
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <input type="text" placeholder="date" name="date" value="{{ record.date }}">
+    </div>
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <input type="text" placeholder="category" name="category" value="{{ record.category }}">
+    </div>
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <input type="text" placeholder="amount" name="amount" value="{{ record.amount }}">
+    </div>
+  </div>
+  <div class="col-12 d-flex justify-content-center mt-3">
+    <button class="btn btn-success" type="submit">完成修改</button>
+    <a class="btn btn-secondary" href="/">返回首頁</a>
+  </div>
+</form>

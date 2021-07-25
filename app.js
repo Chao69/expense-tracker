@@ -68,6 +68,31 @@ app.get('/records/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
+
+// define edit record function
+app.get('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  Record.findById(id)
+    .lean()
+    .then(record => res.render('edit', { record }))
+    .catch(error => console.error(error))
+})
+
+app.post('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  const { name, date, category, amount } = req.body
+  return Record.findById(id)
+    .then(record => {
+      record.name = name
+      record.date = date
+      record.category = category
+      record.amount = amount
+      return record.save()
+    })
+    .then(() => res.redirect(`/records/${id}`))
+    .catch(error => console.error(error))
+})
+
 app.listen(3000, () => {
   console.log('Express is running on http://localhost:3000')
 })
