@@ -33,7 +33,7 @@
       <div class="col d-flex justify-content-end">
         <a href="./records/{{ this._id }}" class="btn btn-success">Detail</a>
         <a href="./records/{{ this._id }}/edit" class="btn btn-secondary">Edit</a>
-        <form action="./records/{{ this._id }}/delete" method="POST" style="display: inline;">
+        <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
           <button class="btn btn-danger" type="submit">Delete</button>
         </form>
       </div>

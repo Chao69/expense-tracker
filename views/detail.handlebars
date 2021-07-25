@@ -20,7 +20,7 @@
   <div class="col d-flex justify-content-center mt-5">
     <a href="/" class="btn btn-secondary px-3">返回首頁</a>
     <a href="/records/{{ record._id }}/edit" class="btn btn-success px-3">編輯支出</a>
-    <form action="/records/{{ record._id }}/delete" method="POST" style="display: inline;">
+    <form action="/records/{{ record._id }}?_method=DELETE" method="POST" style="display: inline;">
       <button class="btn btn-danger" type="submit">Delete</button>
     </form>
   </div>
