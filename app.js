@@ -59,11 +59,10 @@ app.post('/new', (req, res) => {
 
 // define btn-detail function 
 app.get('/records/:id', (req, res) => {
-  const id = req.params._id
+  const id = req.params.id
   Record.findById(id)
     .lean()
     .then((record) => {
-      console.log(record)
       res.render('detail', { record })
     })
     .catch(error => console.error(error))
