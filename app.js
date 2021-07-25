@@ -24,17 +24,45 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // use data seed to render home page
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const categories = await Category.find().lean()
+  const categoryData = {}
+  categories.forEach(category => categoryData[category.name] = category.icon)
+
   Record.find()
-    .lean()
     .sort({ date: 'asc' })
+    .lean()
     .then((records) => {
       let totalAmount = 0
-      records.forEach(record => {
+      records.map(record => {
         totalAmount += record.amount
+        record.icon = categoryData[record.category]
       })
-      res.render('index', { records, totalAmount })
+      res.render('index', { records, totalAmount, categories })
     })
+    .catch(error => console.error(error))
+})
+
+
+// filter by category
+app.get('/filter', async (req, res) => {
+  const categoryName = req.query.category
+  const categories = await Category.find().lean()
+  const categoryData = {}
+  categories.forEach(category => categoryData[category.name] = category.icon)
+
+  console.log(categoryName)
+
+  return Record.find({ category: categoryName })
+    .sort({ date: 'asc' })
+    .lean()
+    .then(records => {
+      let totalAmount = 0
+      totalAmount += records.amount
+      records.icon = categoryData[records.category]
+      console.log(records)
+    })
+  res.render('index', { records, totalAmount, categories, categoryName })
     .catch(error => console.error(error))
 })
 
