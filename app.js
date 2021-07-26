@@ -5,7 +5,10 @@ const Record = require('./models/record')
 const Category = require('./models/category')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const hbshelpers = require('handlebars-helpers')
+
 const app = express()
+const multihelpers = hbshelpers()
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -19,7 +22,7 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }))
+app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars', helpers: multihelpers }))
 app.set('view engine', 'handlebars')
 
 app.use(methodOverride('_method'))
@@ -48,12 +51,16 @@ app.get('/', async (req, res) => {
 
 // filter by category
 app.get('/filter', async (req, res) => {
-  const categoryName = req.query.category
+  const categorySelect = req.query.category
   const categories = await Category.find().lean()
   const categoryData = {}
   categories.forEach(category => categoryData[category.name] = category.icon)
+  console.log(categorySelect)
+  console.log(categories)
 
-  return Record.find({ category: categoryName })
+  if (!categorySelect) return res.redirect('/')
+
+  return Record.find({ category: categorySelect })
     .sort({ date: 'asc' })
     .lean()
     .then(records => {
@@ -62,7 +69,7 @@ app.get('/filter', async (req, res) => {
         totalAmount += record.amount
         record.icon = categoryData[record.category]
       })
-      res.render('index', { records, totalAmount, categories, categoryName })
+      res.render('index', { records, totalAmount, categories, categorySelect })
     })
     .catch(error => console.error(error))
 })
