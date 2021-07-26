@@ -1,6 +1,8 @@
 # 老爸的私房錢：記帳系統
 本專案提供使用者紀錄日常支出，透過次專案練習並且加深對於node.js搭配express框架開發網頁、mongoDB的資料庫連線、在node.js中使用mongoose語法調動資料。
+
 並且讓使用者可以透過heroku連結實際體驗本專案
+
 heroku專案網址：https://arcane-basin-01596.herokuapp.com/
 
 ## 專案功能
