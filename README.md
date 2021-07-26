@@ -46,4 +46,4 @@ npm run seed
 npm run dev
 ```
 6. 啟動成功後，點選所出現連結開啟網頁
-Server is running on http://localhost:3000
+-  Server is running on http://localhost:3000
