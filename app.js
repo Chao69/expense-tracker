@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const hbshelpers = require('handlebars-helpers')
+const session = require('express-session')
+const usePassport = require('./config/passport')
+
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -16,6 +19,12 @@ app.set('view engine', 'handlebars')
 
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(session({
+  secret: 'AlphaCampProject',
+  resave: false,
+  saveUninitialized: true
+}))
+usePassport(app)
 app.use(routes)
 
 app.listen(PORT, () => {
