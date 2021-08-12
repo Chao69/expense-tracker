@@ -7,11 +7,15 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const routes = require('./routes')
 require('./config/mongoose')
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 const multihelpers = hbshelpers()
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars', helpers: multihelpers }))
@@ -20,7 +24,7 @@ app.set('view engine', 'handlebars')
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
-  secret: 'AlphaCampProject',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
