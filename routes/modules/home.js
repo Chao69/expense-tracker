@@ -7,11 +7,12 @@ const Category = require('../../models/category')
 
 // use data seed to render home page
 router.get('/', async (req, res) => {
+  const userId = req.user._id
   const categories = await Category.find().lean()
   const categoryData = {}
   categories.forEach(category => categoryData[category.name] = category.icon)
 
-  Record.find()
+  Record.find({ userId })
     .sort({ date: 'asc' })
     .lean()
     .then((records) => {
@@ -27,15 +28,16 @@ router.get('/', async (req, res) => {
 
 // filter by category
 router.get('/filter', async (req, res) => {
+  const userId = req.user._id
   const categorySelect = req.query.category
-  const categories = await Category.find().lean()
-  const category = await Category.findOne({ categorySelect })
+  const categories = await Category.find({ userId }).lean()
+  const category = await Category.findOne({ categorySelect, userId })
   const categoryData = {}
   categories.forEach(category => categoryData[category.name] = category.icon)
 
   if (!categorySelect) return res.redirect('/')
 
-  return Record.find({ category: categorySelect })
+  return Record.find({ category: categorySelect, userId })
     .sort({ date: 'asc' })
     .lean()
     .then(records => {
