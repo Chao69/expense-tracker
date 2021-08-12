@@ -3,42 +3,49 @@
     "name": "Netflix",
     "date": "2021/7/2",
     "category": "休閒娛樂",
+    "merchant": "Netflix",
     "amount": "330"
   },
   {
     "name": "貓税",
     "date": "2021/7/2",
     "category": "家居物業",
+    "merchant": "寵物公園",
     "amount": "3000"
   },
   {
     "name": "油錢",
     "date": "2021/7/20",
     "category": "交通出行",
+    "merchant": "中油",
     "amount": "1320"
   },
   {
     "name": "晚餐",
     "date": "2021/7/10",
     "category": "餐飲食品",
+    "merchant": "禾意鍋燒意麵",
     "amount": "120"
   },
   {
     "name": "早餐",
     "date": "2021/7/15",
     "category": "餐飲食品",
+    "merchant": "麥味登",
     "amount": "70"
   },
   {
     "name": "燃料稅ˊAˋ",
     "date": "2021/6/1",
     "category": "其他",
+    "merchant": "國稅局",
     "amount": "6980"
   },
   {
     "name": "牌照稅ˊAˋ",
     "date": "2021/6/1",
     "category": "其他",
+    "merchant": "國稅局",
     "amount": "10300"
   }
 ]
