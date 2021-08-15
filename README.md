@@ -4,6 +4,9 @@
 並且讓使用者可以透過heroku連結實際體驗本專案
 
 heroku專案網址：https://arcane-basin-01596.herokuapp.com/
+專案本身提供體驗帳戶
+- 帳戶帳號: test@example.com
+- 帳戶密碼: 123456
 
 ## 專案功能
 - 使用者可以在首頁瀏覽所以支出
@@ -12,6 +15,10 @@ heroku專案網址：https://arcane-basin-01596.herokuapp.com/
 - 使用者可以透過Delete按鈕來刪除以記錄的支出
 - 使用者可以透過Edit按鈕修改以記錄的支出
 - 使用者可以依照類別在下拉式選單選擇查看不同類別的支出
+- 使用者可依照月份在下拉式選單選取指定月份的支出
+- 使用者可透過註冊帳號取得自己的支出表，不與其他使用者資料重疊
+- 使用者可透過facebook進行第三方登入
+- 使用者在新增支出時可自行輸入消費的店家
 
 ## 編程環境
 Node.js v10.24.1
@@ -39,13 +46,15 @@ cd expense-tracker
 ```
 npm install
 ```
-4. 載入種子資料
+4. 引入環境變數
+- 將.env.example改為.env
+6. 載入種子資料
 ```
 npm run seed
 ```
-5. 啟動網頁伺服器
+7. 啟動網頁伺服器
 ```
 npm run dev
 ```
-6. 啟動成功後，點選所出現連結開啟網頁
+8. 啟動成功後，點選所出現連結開啟網頁
 -  Server is running on http://localhost:3000
