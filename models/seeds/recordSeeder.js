@@ -40,7 +40,6 @@ db.once('open', () => {
       ))
     })
     .then(() => {
-      console.log(recordData[1])
       console.log('done!')
       process.exit()
     })

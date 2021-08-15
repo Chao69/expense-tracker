@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const { dateFormatter } = require('../../public/tools')
 
 // use data seed to render home page
 router.get('/', async (req, res) => {
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
     .then((records) => {
       let totalAmount = 0
       records.map(record => {
+        record.date = dateFormatter(record.date)
         totalAmount += record.amount
         record.icon = categoryData[record.category]
       })
@@ -25,29 +27,40 @@ router.get('/', async (req, res) => {
     .catch(error => console.error(error))
 })
 
-// filter by category
+// filter by category & month
 router.get('/filter', async (req, res) => {
-  const userId = req.user._id
-  const categorySelect = req.query.category
-  const categories = await Category.find({ userId }).lean()
-  const category = await Category.findOne({ categorySelect, userId })
-  const categoryData = {}
-  categories.forEach(category => categoryData[category.name] = category.icon)
+  try {
+    const userId = req.user._id
+    const categorySelect = req.query.category
+    const monthSelect = Number(req.query.month)
+    const categories = await Category.find().lean()
+    const categoryData = {}
+    let totalAmount = 0
 
-  if (!categorySelect) return res.redirect('/')
+    categories.forEach(category => categoryData[category.Name] = category.icon)
 
-  return Record.find({ category: categorySelect, userId })
-    .sort({ date: 'asc' })
-    .lean()
-    .then(records => {
-      let totalAmount = 0
-      records.map(record => {
-        totalAmount += record.amount
-        record.icon = categoryData[record.category]
-      })
-      res.render('index', { records, totalAmount, categories, categorySelect })
+    const filterQuery = {
+      userId: userId
+    }
+
+    categorySelect ? filterQuery.category = categorySelect : ''
+    monthSelect ? filterQuery.month = monthSelect : ''
+
+    const records = await Record.aggregate([
+      { $project: { name: 1, date: 1, category: 1, amount: 1, merchant: 1, userId: 1, month: { $month: '$date' } } },
+      { $match: filterQuery }
+    ])
+
+    records.forEach(record => {
+      record.date = dateFormatter(record.date)
+      totalAmount += record.amount
+      record.icon = categoryData[record.category]
     })
-    .catch(error => console.error(error))
+
+    return res.render('index', { records, totalAmount, categorySelect, monthSelect, categories })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 module.exports = router
